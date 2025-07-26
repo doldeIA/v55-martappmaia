@@ -1,18 +1,25 @@
 {
-  "name": "dj-app",
-  "version": "1.0.0",
+  "name": "#85%---martappmaiaiastore",
   "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "18.3.1",
+    "react": "18.3.1",
+    "@google/genai": "^1.7.0",
+    "chart.js": "^4.4.3",
+    "jspdf": "2.5.1",
+    "jspdf-autotable": "3.8.2",
+    "idb": "^7.1.1"
   },
   "devDependencies": {
-    "vite": "^4.5.0"
+    "@types/node": "^22.14.0",
+    "typescript": "~5.7.2",
+    "vite": "^6.2.0"
   }
 }
-

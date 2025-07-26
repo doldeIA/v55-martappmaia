@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MartApp Maia IA Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg-gradient-from: theme('colors.slate.900');
+        --bg-gradient-via: theme('colors.black');
+        --bg-gradient-to: theme('colors.slate.900');
+        --neon-glow-primary: theme('colors.green.400');
+        --neon-glow-secondary: theme('colors.blue.400');
+        --neon-shadow-primary: theme('colors.green.500/20');
+        --neon-shadow-secondary: theme('colors.blue.500/20');
+        --button-primary-from: theme('colors.green.400');
+        --button-primary-to: theme('colors.emerald.600');
+      }
+
+      .theme-padrao {
+        --bg-gradient-from: theme('colors.slate.900');
+        --bg-gradient-via: theme('colors.black');
+        --bg-gradient-to: theme('colors.slate.900');
+        --neon-glow-primary: theme('colors.green.400');
+        --neon-glow-secondary: theme('colors.blue.400');
+        --neon-shadow-primary: theme('colors.green.500/20');
+        --neon-shadow-secondary: theme('colors.blue.500/20');
+        --button-primary-from: theme('colors.green.400');
+        --button-primary-to: theme('colors.emerald.600');
+      }
+
+      .theme-verao {
+        --bg-gradient-from: #1a2a6c;
+        --bg-gradient-via: #b21f1f;
+        --bg-gradient-to: #fdbb2d;
+        --neon-glow-primary: theme('colors.orange.400');
+        --neon-glow-secondary: theme('colors.yellow.300');
+        --neon-shadow-primary: theme('colors.orange.500/30');
+        --neon-shadow-secondary: theme('colors.yellow.400/30');
+        --button-primary-from: theme('colors.orange.500');
+        --button-primary-to: theme('colors.amber.600');
+      }
+
+      .theme-inverno {
+        --bg-gradient-from: #0f2027;
+        --bg-gradient-via: #203a43;
+        --bg-gradient-to: #2c5364;
+        --neon-glow-primary: theme('colors.cyan.300');
+        --neon-glow-secondary: theme('colors.indigo.400');
+        --neon-shadow-primary: theme('colors.cyan.400/20');
+        --neon-shadow-secondary: theme('colors.indigo.500/20');
+        --button-primary-from: theme('colors.cyan.500');
+        --button-primary-to: theme('colors.blue.700');
+      }
+
+      .theme-natal {
+        --bg-gradient-from: #590202;
+        --bg-gradient-via: #8C0303;
+        --bg-gradient-to: #023804;
+        --neon-glow-primary: theme('colors.red.500');
+        --neon-glow-secondary: theme('colors.emerald.400');
+        --neon-shadow-primary: theme('colors.red.500/30');
+        --neon-shadow-secondary: theme('colors.emerald.500/30');
+        --button-primary-from: theme('colors.red.600');
+        --button-primary-to: theme('colors.red.800');
+      }
+
+      .theme-especial {
+        --bg-gradient-from: #4a00e0;
+        --bg-gradient-via: #8e2de2;
+        --bg-gradient-to: #4a00e0;
+        --neon-glow-primary: theme('colors.pink.400');
+        --neon-glow-secondary: theme('colors.purple.400');
+        --neon-shadow-primary: theme('colors.pink.500/30');
+        --neon-shadow-secondary: theme('colors.purple.500/30');
+        --button-primary-from: theme('colors.fuchsia.600');
+        --button-primary-to: theme('colors.purple.700');
+      }
+
+      body {
+        font-family: 'Poppins', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-image: linear-gradient(to bottom right, var(--bg-gradient-from), var(--bg-gradient-via), var(--bg-gradient-to));
+        transition: background-image 1s ease;
+      }
+      @keyframes sparkle-anim {
+        0%, 100% { transform: scale(0) translateY(0); opacity: 0; }
+        25% { opacity: 1; }
+        50% { transform: scale(1.2) translateY(-20px); }
+        75% { opacity: 1; }
+        100% { transform: scale(0) translateY(-40px); opacity: 0;}
+      }
+      .sparkle {
+        position: absolute;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        animation: sparkle-anim linear infinite;
+        box-shadow: 0 0 18px 2px rgba(255, 255, 255, 0.6);
+        will-change: transform, opacity;
+      }
+      
+      @keyframes softGlow {
+          0%, 100% {
+              filter: drop-shadow(0 0 3px var(--glow-color, #fff));
+          }
+          50% {
+              filter: drop-shadow(0 0 12px var(--glow-color, #fff));
+          }
+      }
+
+      .soft-glow-anim {
+          animation: softGlow 4s ease-in-out infinite;
+      }
+
+      @keyframes neonBlink {
+        0% {
+          box-shadow: 0 0 5px rgba(108, 124, 225, 0.5);
+        }
+        50% {
+          box-shadow: 0 0 20px rgba(108, 124, 225, 1);
+        }
+        100% {
+          box-shadow: 0 0 5px rgba(108, 124, 225, 0.5);
+        }
+      }
+
+      .neon-blink-active {
+        animation: neonBlink 1s infinite;
+        border: 1px solid rgba(108, 124, 225, 0.8) !important;
+      }
+
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50%      { opacity: 0.4; }
+      }
+      .animate-blink {
+        animation: blink 0.2s ease-in-out 1;
+      }
+
+      @keyframes neon-pulse {
+        50% {
+          box-shadow: 0 0 20px 5px var(--pulse-color, rgba(255, 255, 255, 0.7));
+        }
+      }
+      .animate-neon-pulse {
+        animation: neon-pulse 300ms ease-in-out;
+      }
+
+      @keyframes neon-pulse-white {
+        50% {
+          box-shadow: 0 0 15px 3px rgba(255, 255, 255, 0.6);
+        }
+      }
+      .animate-neon-pulse-white {
+        animation: neon-pulse-white 2s ease-in-out infinite;
+      }
+
+      @keyframes blinkFast {
+        0%, 100% { box-shadow: 0 0 8px rgba(108, 124, 225, 0.8); }
+        50%      { box-shadow: 0 0 4px rgba(108, 124, 225, 0.4); }
+      }
+      .neon-blink {
+        animation: blinkFast 0.8s ease-in-out infinite;
+      }
+
+      @keyframes bounceOnce {
+        0%   { transform: scale(1);   opacity: 1; }
+        50%  { transform: scale(1.2); opacity: 1; }
+        100% { transform: scale(1);   opacity: 0; }
+      }
+      .animate-bounce-once {
+        animation: bounceOnce 0.5s ease-in-out;
+      }
+
+      .bottom-controls {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 12px 0;
+        background: rgba(20, 22, 35, 0.85);
+        backdrop-filter: blur(6px);
+        box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      .bottom-controls button {
+        flex: 1 1 auto;
+        max-width: 160px;
+        margin: 0 8px;
+      }
+
+      .glow-green {
+        box-shadow: 0 0 12px var(--neon-glow-primary);
+        transition: box-shadow 0.3s ease;
+      }
+
+      @keyframes blinkBlue {
+        0%,100% { box-shadow: 0 0 8px var(--neon-glow-secondary); }
+        50%     { box-shadow: 0 0 20px var(--neon-glow-secondary); }
+      }
+      .animate-blink-blue {
+        animation: blinkBlue 1s ease-in-out infinite;
+      }
+      
+      @keyframes whatsappNeonBlink {
+        0%, 100% {
+           filter: drop-shadow(0 0 4px var(--button-primary-from));
+        }
+        50% {
+           filter: drop-shadow(0 0 15px var(--button-primary-from));
+        }
+      }
+
+      .animate-whatsapp-neon {
+          animation: whatsappNeonBlink 1s ease-in-out infinite;
+      }
+
+      @keyframes whatsappGlowOnce {
+        0% {
+          filter: drop-shadow(0 0 4px var(--button-primary-from));
+        }
+        50% {
+          filter: drop-shadow(0 0 25px var(--button-primary-from));
+        }
+        100% {
+          filter: drop-shadow(0 0 4px var(--button-primary-from));
+        }
+      }
+
+      .animate-whatsapp-glow-once {
+          animation: whatsappGlowOnce 1s ease-in-out;
+      }
+      
+      /* Custom Scrollbar for Carousel */
+      .scrollbar-thin::-webkit-scrollbar {
+        height: 8px;
+        width: 8px;
+      }
+      .scrollbar-thin::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .scrollbar-thin::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        border: 3px solid transparent;
+        background-clip: content-box;
+      }
+      .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(255, 255, 255, 0.4);
+      }
+
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@18.3.1/",
+    "react/": "https://esm.sh/react@18.3.1/",
+    "react": "https://esm.sh/react@18.3.1",
+    "@google/genai": "https://esm.sh/@google/genai@^1.7.0",
+    "chart.js": "https://esm.sh/chart.js@^4.4.3",
+    "chart.js/": "https://esm.sh/chart.js@^4.4.3/",
+    "jspdf": "https://esm.sh/jspdf@2.5.1",
+    "jspdf-autotable": "https://esm.sh/jspdf-autotable@3.8.2",
+    "idb": "https://esm.sh/idb@^7.1.1"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="text-white">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
